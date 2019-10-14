@@ -1,5 +1,4 @@
-const db = require('../data/dbConfig');
-
+const db = require("../data/dbConfig");
 
 module.exports = {
   findUsersAuth,
@@ -8,30 +7,27 @@ module.exports = {
   addUserAuth
 };
 
-
-
 function findUsersAuth() {
-    return db("usersAuth");
-   
+  return db("usersAuth");
 }
 
 function findUserAuthById(id) {
-    return db("usersAuth")
-      .where({ id })
-      .first();
+  return db("usersAuth")
+    .where({ id })
+    .first();
 }
 
 function findUserAuthByUserName(userName) {
   return db("usersAuth")
-    .where({ userName})
+    .where({ userName })
     .first();
 }
 
 function addUserAuth(userAuth) {
-    return db("usersAuth")
-      .insert(userAuth, "id")
-      .then(ids => {
-        const [id] = ids;
-        return findUserAuthById(id);
-      });
+  return db("usersAuth")
+    .insert(userAuth, "id")
+    .then(ids => {
+      const [id] = ids;
+      return findUserAuthById(id);
+    });
 }

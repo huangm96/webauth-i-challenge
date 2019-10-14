@@ -4,7 +4,7 @@ const authModel = require("./auth-model.js");
 const credentials = require('./credentials-middleware');
 const router = express.Router();
 
-router.get("/api/users", (req, res) => {
+router.get("/api/users", credentials.protected, (req, res) => {
   authModel
     .findUsersAuth()
     .then(users => {
