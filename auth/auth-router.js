@@ -36,6 +36,8 @@ router.post("/api/login",credentials.authInfo,(req, res) => {
     authModel.findUserAuthByUserName(req.body.userName)
         .then(user => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
+                req.session.username = user.userName;
+                console.log(req.session)
                 res.status(200).json({message:`Welcome! ${user.userName}`});
             } else {
                 res.status(401).json({message:"You cannot pass"})
@@ -46,6 +48,14 @@ router.post("/api/login",credentials.authInfo,(req, res) => {
   })
 });
 
-
+router.get('/api/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy(err => {
+            res.status(200).json({message:"You logged out! Bye"})
+        })
+    } else {
+         res.status(200).json({ message: "You already logged out!" });
+    }
+})
 
 module.exports = router;
