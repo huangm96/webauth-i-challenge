@@ -4,7 +4,7 @@ import './App.css';
 import { Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import RegisterForm from './components/RegisterForm'
-
+import LoginForm from './components/LoginForm'
 
 function App() {
   
@@ -26,6 +26,11 @@ function App() {
         exact
         path="/register"
         render={props => <RegisterForm {...props} />}
+      />
+      <Route
+        exact
+        path="/"
+        render={props => <LoginForm {...props} />}
       />
     </div>
   );

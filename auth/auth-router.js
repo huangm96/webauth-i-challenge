@@ -38,7 +38,7 @@ router.post("/api/login",credentials.authInfo,(req, res) => {
             if (user && bcrypt.compareSync(req.body.password, user.password)) {
                 req.session.username = user.userName;
                 console.log(req.session)
-                res.status(200).json({message:`Welcome! ${user.userName}`});
+                res.status(200).json({message:`Hi! ${user.userName}`});
             } else {
                 res.status(401).json({message:"You cannot pass"})
             }

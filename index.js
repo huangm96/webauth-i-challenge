@@ -1,5 +1,6 @@
 const express = require("express");
 const helmet = require("helmet");
+const cors = require("cors");
 const sessions = require('express-session')
 const KnexSessionStore = require('connect-session-knex')(sessions);
 
@@ -26,6 +27,7 @@ const sessionConfiguration = {
 
 server.use(sessions(sessionConfiguration))
 server.use(helmet());
+server.use(cors())
 server.use(express.json());
 
 server.get("/", (req, res) => {
