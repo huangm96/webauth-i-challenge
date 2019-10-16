@@ -19,7 +19,7 @@ const LoginForm = (props) => {
       .then(res => {
           console.log(res);
          
-          localStorage.setItem("token", res.data.payload);
+          localStorage.setItem("token", "5456234sdfasf2w3234fdsgf35464544@$ertg@#4");
           props.history.push("/data");
       })
       .catch(err => {
