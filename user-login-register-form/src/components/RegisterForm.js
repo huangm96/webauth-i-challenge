@@ -3,7 +3,7 @@ import { Button, Input, Icon, Form } from "antd";
 import "antd/dist/antd.css";
 import axios from "axios"
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
   const [form, setForm] = useState({
     userName: "",
     password:""
@@ -18,6 +18,7 @@ const RegisterForm = () => {
       .post("http://localhost:5555/api/register",form)
       .then(res => {
         console.log(res);
+        props.history.push('/')
       })
       .catch(err => {
         console.log(err);

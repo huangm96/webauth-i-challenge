@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Button, Input, Icon, Form } from "antd";
 import "antd/dist/antd.css";
-import axios from "axios";
+import {axiosWithAuth} from "../utils/axiosWithAuth";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const [form, setForm] = useState({
     userName: "",
     password: ""
@@ -14,10 +14,13 @@ const LoginForm = () => {
   const submitForm = e => {
     e.preventDefault();
     console.log(form);
-    axios
+    axiosWithAuth()
       .post("http://localhost:5555/api/login", form)
       .then(res => {
-        console.log(res);
+          console.log(res);
+         
+          localStorage.setItem("token", res.data.payload);
+          props.history.push("/data");
       })
       .catch(err => {
         console.log(err);

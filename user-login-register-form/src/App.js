@@ -5,6 +5,8 @@ import { Route } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
+import UsersData from './components/UsersData'
+import PrivateRoute from './components/PrivateRoute'
 
 function App() {
   
@@ -27,11 +29,9 @@ function App() {
         path="/register"
         render={props => <RegisterForm {...props} />}
       />
-      <Route
-        exact
-        path="/"
-        render={props => <LoginForm {...props} />}
-      />
+      <Route exact path="/" render={props => <LoginForm {...props} />} />
+      <PrivateRoute exact path="/data" component={UsersData} />
+      
     </div>
   );
 }
